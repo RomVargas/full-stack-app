@@ -5,7 +5,7 @@ WORKDIR /app
 # Copia los archivos de la aplicación y compílala
 COPY pom.xml .
 COPY src ./src
-RUN mvn clean package
+RUN mvn clean install
 
 # Usa una imagen base de OpenJDK
 FROM openjdk:22-jdk-slim
