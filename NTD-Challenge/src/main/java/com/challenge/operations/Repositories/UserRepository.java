@@ -1,8 +1,16 @@
 package com.challenge.operations.Repositories;
 
 import com.challenge.operations.Entities.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.google.common.base.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findByUsername(String username);
+
+    //@Query("select u from Users where u.username = ?1")
+    //Optional<User>getUserByUsername(String username);
 }
