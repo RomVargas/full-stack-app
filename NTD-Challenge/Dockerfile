@@ -1,5 +1,5 @@
 # Usa una imagen de Maven para construir el proyecto
-FROM maven:3.3.2-jdk-slim AS build
+FROM maven:3.8.4-openjdk-22 AS build
 WORKDIR /app
 
 # Copia los archivos de la aplicación y compílala
