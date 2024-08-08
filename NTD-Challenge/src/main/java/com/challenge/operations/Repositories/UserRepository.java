@@ -3,7 +3,6 @@ package com.challenge.operations.Repositories;
 import com.challenge.operations.Entities.User;
 import com.google.common.base.Optional;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

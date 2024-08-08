@@ -1,7 +1,6 @@
 package com.challenge.operations.auth.filters;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.challenge.operations.Entities.User;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -59,6 +59,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * to authenticate the user credentials provided in the `UsernamePasswordAuthenticationToken`
      * object `authToken`.
      */
+    @CrossOrigin
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
@@ -106,6 +107,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     * authenticated user, such as their username, authorities, and any additional details associated
     * with the authentication.
     */
+    @CrossOrigin
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
@@ -147,6 +149,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * contains information about the specific reason for the authentication failure, such as invalid
      * credentials, account locked, expired credentials, etc.
      */
+    @CrossOrigin
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException failed) throws IOException, ServletException {

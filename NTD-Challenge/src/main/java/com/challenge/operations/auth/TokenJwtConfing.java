@@ -1,7 +1,5 @@
 package com.challenge.operations.auth;
 
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
