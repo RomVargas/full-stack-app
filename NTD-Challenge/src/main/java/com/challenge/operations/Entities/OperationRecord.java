@@ -25,12 +25,21 @@ public class OperationRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @ManyToOne // Relación muchos a uno
+    @JoinColumn(name = "operation_id")
+    private Operation operation; // Debe ser una entidad Operation
+    
+    @ManyToOne // Relación muchos a uno
+    @JoinColumn(name = "user_id")
+    private User user; // Debe ser una entidad User
+
+    /*@ManyToOne(targetEntity =  Operation.class )
+    @JoinColumn(name = "operation_id")
     private Long operationId;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name="user_id")
-    private Long userId;
+    private Long userId;*/
 
     @NotBlank
     private Double amount;

@@ -58,7 +58,7 @@ public class SpringSecurityConfig {
                 .anyRequest()
                 .authenticated())
                 .addFilter(new JWTAuthenticationFilter(authenticationConfiguration.getAuthenticationManager())) // filtro para login
-                .addFilter(new JwtValidationFilter(authenticationConfiguration.getAuthenticationManager())) // filtro para login
+                //.addFilter(new JwtValidationFilter(authenticationConfiguration.getAuthenticationManager())) // filtro para login
                 .csrf(config -> config.disable())
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(cors -> cors.configurationSource(cors()))
@@ -68,9 +68,10 @@ public class SpringSecurityConfig {
     @Bean
     CorsConfigurationSource cors() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        config.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(Arrays.asList("Authorizatiion","Content-Type"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5173/"));
+        //config.setAllowedOriginPatterns(Arrays.asList("*"));
+        config.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
         config.setAllowCredentials(true);
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

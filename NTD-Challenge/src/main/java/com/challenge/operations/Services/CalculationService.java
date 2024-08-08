@@ -79,8 +79,8 @@ public class CalculationService {
                 return null;
             }
         };
-        record.setUserId(userId);
-        record.setOperationId(operation.getId());
+        //record.setUser(userId);
+        //record.setOperation(operation.getId());
         record.setAmount(operation.getCost());
         //record.setUserBalance(user.getBalance());
         record.setOperationResponse(result);

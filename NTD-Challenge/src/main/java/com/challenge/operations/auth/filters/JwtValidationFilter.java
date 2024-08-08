@@ -42,8 +42,15 @@ public class JwtValidationFilter extends BasicAuthenticationFilter{
         }
 
         String token = header.replace(PREFIX_TOKEN, "");
-        
-        byte[] tokenDecodedBytes = Base64.getDecoder().decode(token);
+        System.out.println("token ---->" + token);
+        // Reemplazar caracteres URL-safe para Base64 estándar
+        String base64Token = token.replace('-', '+').replace('_', '/');
+        int paddingRequired = 4 - (base64Token.length() % 4);
+        if (paddingRequired < 4) {
+            base64Token += "=".repeat(paddingRequired);
+        }
+        byte[] tokenDecodedBytes = Base64.getDecoder().decode(base64Token);
+        System.out.println("tokenDB ---->" + tokenDecodedBytes);
         String tokenDecoded = new String(tokenDecodedBytes);
         
         String[] tokenArr = tokenDecoded.split("\\.");

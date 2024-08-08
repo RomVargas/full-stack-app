@@ -1,18 +1,61 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export const Records = () => {
 
-    const records = [{
-        "id": "1",
-        "user_id" : "01",
-        "amount": "100",
-        "date" : "07-25-2024",
-        "operation_id": "1",
-        "response" : "101",
-        "balance" : "102"
-    }]
+    const [records, setRecords] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(15);
+    const [filter, setFilter] = useState('');
+
+    const fetchRecords = async () => {
+    try {
+        const response = await axios.get('http://localhost:8080/records');
+        console.log(response.data);
+        setRecords(response.data);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+useEffect(() => {
+    fetchRecords();
+}, []);
+
+// Filtra los registros basados en el valor del filtro
+    const filteredRecords = records.filter(record =>
+        Object.values(record).some(value =>
+            value.toString().toLowerCase().includes(filter.toLowerCase())
+        )
+    );
+
+// Calcula los índices de los registros a mostrar en la página actual
+const indexOfLastRecord = currentPage * recordsPerPage;
+const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+const currentRecords = filteredRecords.slice(indexOfFirstRecord, indexOfLastRecord);
+
+// Cambia la página actual
+const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+// Crea un array con el número de páginas
+const pageNumbers = [];
+for (let i = 1; i <= Math.ceil(filteredRecords.length / recordsPerPage); i++) {
+    pageNumbers.push(i);
+}
 
     return(
         <>
             <div className="container">
+                {/* Campo de filtro */}
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Filter Records"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    />
+                </div>
                 <table className="table">
                     <thead>
                         <tr>
@@ -26,19 +69,34 @@ export const Records = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {records.map((record) => (
+                        {currentRecords.map((record) => (
                             <tr key={record.id}>
-                                <th scope="row">1</th>
-                                <td>{record.user_id}</td>
+                                <th scope="row">{record.id}</th>
+                                <td>{record.user.id}</td>
                                 <td>{record.amount}</td>
                                 <td>{record.date}</td>
-                                <td>{record.operation_id}</td>
+                                <td>{record.operation.id}</td>
                                 <td>{record.response}</td>
-                                <td>{record.balance}</td>
+                                <td>{record.userBalance}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                {/* Paginación */}
+                <nav>
+                    <ul className="pagination">
+                        {pageNumbers.map((number) => (
+                            <li key={number} className="page-item">
+                                <button
+                                    onClick={() => paginate(number)}
+                                    className="page-link"
+                                >
+                                    {number}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
             </div>
         </>
     );

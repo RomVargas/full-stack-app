@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-NtdChallengeApplication<operations>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.challenge.operations.NtdChallengeApplication",
+            "projectName": "operations",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

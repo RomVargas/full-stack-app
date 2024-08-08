@@ -18,6 +18,7 @@ public class TokenJwtConfing {
     public static SecretKey generateKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
+            //KeyGenerator keyGenerator = KeyGenerator.getInstance("HS256");
             keyGenerator.init(256); // Tamaño de clave recomendado
             return keyGenerator.generateKey();
         } catch (NoSuchAlgorithmException e) {
