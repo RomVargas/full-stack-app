@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handlerCloseForm }) => {
 
@@ -23,7 +24,8 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
         })
     }
 
-    const onSubmit = (event) => {
+
+    const onSubmit = async (event) => {
         event.preventDefault();
         if (!username || (!password && id === 0) || !email) {
             Swal.fire(
@@ -34,11 +36,15 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
 
             return;
         }
-        // console.log(userForm);
 
         // guardar el user form en el listado de usuarios
         handlerAddUser(userForm);
         setUserForm(initialUserForm);
+        try {
+            await axios.post('http://localhost:8080/users');
+        } catch (error) {
+            
+        }
     }
 
     const onCloseForm = () => {

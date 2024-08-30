@@ -1,4 +1,4 @@
-create database ntd;
+create database template;
 
 CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,

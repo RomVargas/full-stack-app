@@ -67,7 +67,7 @@ public class SpringSecurityConfig {
     @Bean
     CorsConfigurationSource cors() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://full-stack-app-delta.vercel.app"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5174", "https://full-stack-app-delta.vercel.app"));
         config.setAllowedOriginPatterns(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
