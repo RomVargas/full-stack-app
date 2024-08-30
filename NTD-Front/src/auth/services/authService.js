@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const loginUser = async ({username, password}) => {
     try{
-        return await axios.post('http://localhost:8080/login', {
-        //return await axios.post('https://zvllf0kd-9000.usw3.devtunnels.ms/login', {
+        //return await axios.post('http://localhost:8080/login', {
+        return await axios.post('https://full-stack-app-vrkr.onrender.com/login', {
             username,
             password,
         })
