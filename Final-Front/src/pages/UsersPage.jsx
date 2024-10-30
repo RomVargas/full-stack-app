@@ -1,11 +1,29 @@
+import { useEffect, useState } from "react";
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
 import { useUsers } from "../hooks/useUsers";
+import axios from 'axios';
+import Swal from "sweetalert2";
 
 export const UsersPage = () => {
+    const [users, setUsers] = useState([]);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/users");
+            setUsers(response.data);
+        } catch (error) {
+            Swal.fire("Error", "No se pudieron cargar los usuarios", "error");
+        }
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
 
     const {
-        users,
+        //users,
         userSelected,
         initialUserForm,
         visibleForm,

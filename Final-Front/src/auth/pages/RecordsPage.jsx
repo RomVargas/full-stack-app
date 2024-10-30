@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const Records = () => {
 
+    const apiUrl = process.env.API_URL;
+
     const [records, setRecords] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(15);
@@ -10,7 +12,7 @@ export const Records = () => {
 
     const fetchRecords = async () => {
     try {
-        const response = await axios.get('http://localhost:8080/records');
+        const response = await axios.get(`${apiUrl}/users`);
         console.log(response.data);
         setRecords(response.data);
     } catch (error) {

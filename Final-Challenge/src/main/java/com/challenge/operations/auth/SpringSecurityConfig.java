@@ -1,7 +1,5 @@
 package com.challenge.operations.auth;
 
-
-
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import com.challenge.operations.auth.filters.JWTAuthenticationFilter;
+import com.challenge.operations.auth.filters.JwtValidationFilter;
 
 @Configuration
 @EnableWebSecurity

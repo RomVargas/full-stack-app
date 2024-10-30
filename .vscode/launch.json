@@ -2,10 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-NtdChallengeApplication<operations>",
+            "name": "Spring Boot-FinalChallengeApplication<operations>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.challenge.operations.NtdChallengeApplication",
+            "mainClass": "com.challenge.operations.FinalChallengeApplication",
             "projectName": "operations",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
