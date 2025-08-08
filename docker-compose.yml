@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./Backend/app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - backend-data:/app/data
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - itj-network
+
+  frontend:
+    build:
+      context: ./Frontend/app
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - itj-network
+
+volumes:
+  backend-data:
+
+networks:
+  itj-network:
+    driver: bridge
