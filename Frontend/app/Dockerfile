@@ -18,23 +18,14 @@ RUN npm run build
 # Etapa de producción con nginx
 FROM nginx:alpine
 
-# Instalar envsubst para procesar variables de entorno
-RUN apk add --no-cache bash
-
 # Copiar archivos buildados
 COPY --from=build /app/dist/app/browser /usr/share/nginx/html
 
-# Copiar configuración de nginx
-COPY nginx.conf /etc/nginx/nginx.conf.template
-
-# Crear script de inicio
-RUN echo '#!/bin/bash' > /docker-entrypoint.sh && \
-    echo 'envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf' >> /docker-entrypoint.sh && \
-    echo 'nginx -g "daemon off;"' >> /docker-entrypoint.sh && \
-    chmod +x /docker-entrypoint.sh
+# Copiar configuración de nginx simplificada
+COPY nginx.conf.simple /etc/nginx/nginx.conf
 
 # Exponer puerto
 EXPOSE 80
 
 # Comando por defecto
-CMD ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
