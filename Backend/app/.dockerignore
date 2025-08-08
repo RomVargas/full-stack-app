@@ -3,5 +3,8 @@ node_modules/
 .vscode/
 *.log
 app.log
-data/
 target/
+data/
+.gitignore
+README.md
+HELP.md
