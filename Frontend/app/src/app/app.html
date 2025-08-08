@@ -1,0 +1,18 @@
+<div class="app-container">
+  <div *ngIf="currentView === 'form'">
+    <app-form-component 
+      [userToEdit]="userToEdit"
+      [isEditMode]="isEditMode"
+      (userSaved)="onUserSaved($event)"
+      (cancelEdit)="onCancelEdit()">
+    </app-form-component>
+  </div>
+  
+  <div *ngIf="currentView === 'table'">
+    <app-table-component 
+      (editUser)="onEditUser($event)">
+    </app-table-component>
+  </div>
+</div>
+
+<router-outlet />

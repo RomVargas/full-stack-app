@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+body {
+    background-color: #080710;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos personalizados para SweetAlert2 */
+.swal2-popup {
+    font-family: 'Poppins', sans-serif !important;
+    border-radius: 15px !important;
+}
+
+.swal2-title {
+    font-weight: 600 !important;
+    color: #333 !important;
+}
+
+.swal2-content {
+    font-weight: 300 !important;
+    color: #666 !important;
+}
+
+.swal2-confirm {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    padding: 12px 24px !important;
+}
+
+.swal2-cancel {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    padding: 12px 24px !important;
+}
+
+/* Animaciones personalizadas */
+.swal2-show {
+    animation: swal2-show 0.3s ease-out !important;
+}
+
+@keyframes swal2-show {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

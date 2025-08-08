@@ -1,0 +1,47 @@
+<div class="table-container">
+    <div class="header">
+        <h2>Lista de Usuarios</h2>
+        <app-button-component [label]="'Nuevo Usuario'" (buttonClick)="volverAlFormulario()"></app-button-component>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Cargando usuarios...</p>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && users.length === 0" class="no-users">
+        <p>No hay usuarios registrados</p>
+        <app-button-component [label]="'Crear Primer Usuario'" (buttonClick)="volverAlFormulario()"></app-button-component>
+    </div>
+
+    <table *ngIf="!loading && users.length > 0">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td class="actions">
+                    <app-button-component [label]="'Editar'" (buttonClick)="updateUser(user.id)"></app-button-component>
+                    <app-button-component [label]="'Eliminar'" (buttonClick)="deleteUser(user.id)"></app-button-component>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Total Users: {{ users.length }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>    
+
+

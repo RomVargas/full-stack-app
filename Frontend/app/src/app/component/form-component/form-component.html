@@ -1,0 +1,21 @@
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form (ngSubmit)="guardar()" #userForm="ngForm">
+    <h3>{{ isEditMode ? 'Edit User' : 'Create User' }}</h3>
+
+    <label for="firstName">First Name</label>
+    <input type="text" placeholder="first name" id="firstName" name="firstName" [(ngModel)]="user.firstName" required>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" placeholder="last name" id="lastName" name="lastName" [(ngModel)]="user.lastName" required>
+
+    <label for="email">Email</label>
+    <input type="text" placeholder="email" id="email" name="email" [(ngModel)]="user.email" required>
+    <br>
+    <div class="display-center">
+        <app-button-component [label]="isEditMode ? 'Update' : 'Submit'" (buttonClick)="guardar()"></app-button-component>
+        <app-button-component *ngIf="isEditMode" [label]="'Cancel'" (buttonClick)="cancelar()"></app-button-component>
+    </div>
+</form>
