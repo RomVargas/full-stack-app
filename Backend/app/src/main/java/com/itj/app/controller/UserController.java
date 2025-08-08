@@ -14,11 +14,19 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://full-stack-app-front.onrender.com", "https://*.onrender.com"})
 public class UserController {
     
     @Autowired
     private UserService userService;
+
+    /**
+     * Endpoint de prueba en la raíz
+     */
+    @GetMapping("/")
+    public ResponseEntity<String> root() {
+        return ResponseEntity.ok("API de usuarios funcionando correctamente");
+    }
 
     /**
      * Obtener todos los usuarios
