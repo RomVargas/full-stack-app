@@ -25,6 +25,8 @@ COPY --from=build /app/target/app-0.0.1-SNAPSHOT.jar app.jar
 # Crear directorio para datos
 RUN mkdir -p /app/data
 
+RUN mkdir -p /app/data
+
 # Exponer puerto
 EXPOSE 8080
 
