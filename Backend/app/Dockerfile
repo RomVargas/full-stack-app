@@ -20,7 +20,10 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copiar el JAR compilado desde la etapa anterior
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/app-0.0.1-SNAPSHOT.jar app.jar
+
+# Crear directorio para datos
+RUN mkdir -p /app/data
 
 # Exponer puerto
 EXPOSE 8080
