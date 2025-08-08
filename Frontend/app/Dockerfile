@@ -28,10 +28,10 @@ COPY --from=build /app/dist/app/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf.template
 
 # Crear script de inicio
-RUN echo '#!/bin/bash\n\
-envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf\n\
-nginx -g "daemon off;"' > /docker-entrypoint.sh && \
-chmod +x /docker-entrypoint.sh
+RUN echo '#!/bin/bash' > /docker-entrypoint.sh && \
+    echo 'envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf' >> /docker-entrypoint.sh && \
+    echo 'nginx -g "daemon off;"' >> /docker-entrypoint.sh && \
+    chmod +x /docker-entrypoint.sh
 
 # Exponer puerto
 EXPOSE 80
