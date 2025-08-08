@@ -1,0 +1,19 @@
+# Excluir todo excepto Backend/app
+Frontend/
+scripts/
+README-DEPLOYMENT.md
+.git/
+.vscode/
+*.log
+
+# Excluir archivos específicos del backend que no necesitamos
+Backend/app/node_modules/
+Backend/app/.git/
+Backend/app/.vscode/
+Backend/app/*.log
+Backend/app/app.log
+Backend/app/target/
+Backend/app/data/
+Backend/app/.gitignore
+Backend/app/README.md
+Backend/app/HELP.md
