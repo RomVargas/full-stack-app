@@ -22,6 +22,8 @@ WORKDIR /app
 # Copiar el JAR compilado desde la etapa anterior
 COPY --from=build /app/target/*.jar app.jar
 
+RUN mkdir -p /app/data
+
 # Exponer puerto
 EXPOSE 8080
 
